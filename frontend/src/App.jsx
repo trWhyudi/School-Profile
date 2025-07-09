@@ -1,0 +1,106 @@
+import React, { useEffect, useContext, useState } from 'react'
+import {Routes, Route} from 'react-router-dom'
+import Home from "./page/Home"
+import About from "./page/About"
+import Contact from "./page/Contact"
+import Services from "./page/Services"
+import Help from "./page/Help"
+import Policy from "./page/Policy"
+import Terms from "./page/Terms"
+import Faq from "./page/Faq"
+import PageNotFound from "./page/PageNotFound"
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
+import Login from './page/Login'
+import Register from './page/Register'
+import axios from 'axios'
+import { Context } from './main'
+import AOS from 'aos';
+
+const App = () => {
+  const {setIsAuth, setUser} = useContext(Context);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const {data} = axios.get("", {
+          withCredentials: true
+        })
+
+        if (data?.user) {
+          setIsAuth(true);
+          setUser(data.user);
+          let profileUrl = "http://localhost:5050/api/v1/user/me";
+
+          if (data.user.role === "Murid") {
+            profileUrl = "http://localhost:5050/api/v1/student/profile";
+          } else if (data.user.role === "Guru") {
+            profileUrl = "http://localhost:5050/api/v1/teacher/profile";
+          } else if (data.user.role === "Admin") {
+            profileUrl = "http://localhost:5050/api/v1/user/profile";
+          }
+
+          if (profileUrl) {
+            const profileRes = await axios.get(profileUrl, {
+              withCredentials: true
+            });
+            const profileData = 
+            profileRes.data[data.user.role.toLowerCase()] || 
+            profileRes.data.user || 
+            data.user;
+            setUser(profileData);
+          }
+        }
+      } catch (error) {
+        setIsAuth(false);
+        setUser({});
+        console.log("Error di fetch user profile", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUserProfile()
+  }, [setIsAuth]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <h1 className='text-2xl font-semibold text-sky-600'>Loading...</h1>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/services' element={<Services />}></Route>
+        <Route path='/help' element={<Help />}></Route>
+        <Route path='/policy' element={<Policy />}></Route>
+        <Route path='/terms' element={<Terms />}></Route>
+        <Route path='/faq' element={<Faq />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
+      </Routes>
+      <ToastContainer position="bottom-right"/>
+      <Footer />
+    </div>
+  )
+}
+
+export default App
