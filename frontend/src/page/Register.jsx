@@ -88,7 +88,7 @@ const Register = () => {
     }
 
     return (
-        <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-blue-100 py-8 px-4'>
+        <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-blue-100 py-20 px-4'>
             <div className='bg-white rounded-xl shadow-xl p-6 md:p-8 w-full max-w-md'>
                 <div className='text-center mb-8'>
                     <h2 className='text-2xl md:text-3xl font-bold text-sky-600'>Buat Akun Baru</h2>

@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Hero = () => {
   return (
-    <div className='relative w-full mt-10'>
+    <div className='relative w-full'>
         <Carousel
             autoPlay
             infiniteLoop

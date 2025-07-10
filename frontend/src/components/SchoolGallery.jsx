@@ -68,9 +68,9 @@ const SchoolGallery = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-0 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-sky-50 py-12 px-4 sm:px-6 lg:px-8" data-aos="fade-up">
             <div className="max-w-[1440px] mx-auto">
-                <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-2">School Gallery</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-sky-600 text-center mb-2">School Gallery</h2>
                 <p className="text-lg text-gray-600 text-center mb-12">Memorable moments from our school</p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

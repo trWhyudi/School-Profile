@@ -8,12 +8,12 @@ export const Context = createContext();
 
 const Apps = () => {
   const [isAuth, setIsAuth] = useState(() => {
-    return !localStorage.getItem("authToken");
+    return !!localStorage.getItem("authToken");
   });
 
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : {};
+    return savedUser ? JSON.parse(savedUser) : null;
   });
 
   return (

@@ -33,10 +33,10 @@ const photoBars = [
 
 const PhotoLibrary = () => {
   return (
-    <div className='bg-gradient-to-br from-sky-50 to-indigo-100 py-16 px-4'>
+    <div className='bg-gradient-to-br from-sky-50 to-indigo-200 py-16 px-4' data-aos="fade-up">
         <div className='max-w-[1440px] mx-auto'>
             <div className='text-center mb-16'>
-                <h1 className='text-4xl md:text-5xl font-bold text-gray-800 mb-4'>Fasilitas Unggulan Sekolah Kami</h1>
+                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-2'>Fasilitas Unggulan Sekolah Kami</h1>
                 <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
                     Temukan lingkungan belajar yang mendukung dengan fasilitas modern dan lengkap
                 </p>

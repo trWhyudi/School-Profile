@@ -1,14 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { Context } from '../main'
+import React, { useState, useEffect } from 'react'
+// import { Context } from '../main'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { FaBook, FaBuilding } from 'react-icons/fa'
 
 const AllTeacher = () => {
     const [teacher, setTeacher] = useState([]);
-    const {user} = useContext(Context);
+    // const {user} = useContext(Context);
 
     const fetchTeacher = async () => {
         try {
@@ -46,25 +47,25 @@ const AllTeacher = () => {
     }
 
     return (
-        <div className='bg-gradient-to-r from-sky-50 to-purple-200 py-10'>
+        <div className='bg-gradient-to-r from-sky-50 to-indigo-200 py-20' data-aos="fade-up">
             <div className='max-w-[1440px] mx-auto px-4'>
-                <h1 className='text-4xl font-bold text-sky-600 mb-12'>🎓 Guru Terbaik</h1>
+                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-12 text-center' data-aos="fade-up">🎓 Kenali Guru Kami</h1>
 
                 {teacher && teacher.length > 0 ? (
                     teacher.length === 1 ? (
-                        <div className='flex justify-center'>
+                        <div className='flex justify-center'  data-aos="zoom-in">
                             <div className='max-w-md w-full'>
-                                <div className='bg-white/80 backdrop-blur-lg border border-indigo-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300'>
+                                <div className='bg-white/80 backdrop-blur-lg border border-cyan-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300'>
                                     <div className='flex items-center gap-4 mb-4'>
                                         <img 
                                             src={teacher[0]?.userId?.avatar?.url || '/default-avatar.png'} 
                                             alt="Avatar" 
-                                            className="w-16 h-16 rounded-full border-2 border-indigo-400 object-cover" 
+                                            className="w-16 h-16 rounded-full border-2 border-cyan-400 object-cover" 
                                         />
                                         <div className='flex-1'>
-                                            <h2 className='text-xl font-semibold text-indigo-700'>{teacher[0]?.userId?.name || "Nama Guru"}</h2>
-                                            <p className='text-sm text-gray-600 capitalize'>Mata Pelajaran: {teacher[0]?.subject}</p>
-                                            <p className='text-sm text-gray-600'>Jurusan: <span>{teacher[0]?.department}</span></p>
+                                            <h2 className='text-xl font-semibold text-gray-700'>{teacher[0]?.userId?.name || "Nama Guru"}</h2>
+                                            <p className='text-sm text-gray-600 capitalize flex items-center gap-2'><FaBook className='text-sky-600'/> Mata Pelajaran: {teacher[0]?.subject}</p>
+                                            <p className='text-sm text-gray-600 capitalize flex items-center gap-2'><FaBuilding className='text-sky-600'/> Jurusan: <span>{teacher[0]?.department}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -73,18 +74,18 @@ const AllTeacher = () => {
                     ) : (
                         <Slider {...settings}>
                             {teacher.map((teacherItem) => (
-                                <div key={teacherItem._id} className='px-4'>
-                                    <div className='bg-white/80 backdrop-blur-lg border border-indigo-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300'>
+                                <div key={teacherItem._id} className='px-4 cursor-pointer' data-aos="zoom-in">
+                                    <div className='bg-white/80 backdrop-blur-lg border border-cyan-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300'>
                                         <div className='flex items-center gap-4 mb-4'>
                                             <img 
                                                 src={teacherItem?.userId?.avatar?.url || '/default-avatar.png'} 
                                                 alt="Avatar" 
-                                                className="w-16 h-16 rounded-full border-2 border-indigo-400 object-cover" 
+                                                className="w-16 h-16 rounded-full border-2 border-cyan-400 object-cover" 
                                             />
                                             <div className='flex-1'>
-                                                <h2 className='text-xl font-semibold text-indigo-700'>{teacherItem?.userId?.name || "Nama Guru"}</h2>
-                                                <p className='text-sm text-gray-600 capitalize'>Mata Pelajaran: {teacherItem?.subject}</p>
-                                                <p className='text-sm text-gray-600'>Jurusan: <span>{teacherItem?.department}</span></p>
+                                                <h2 className='text-xl md:text-2xl font-semibold text-gray-700'>{teacherItem?.userId?.name || "Nama Guru"}</h2>
+                                                <p className='text-sm text-gray-600 flex items-center gap-2 md:text-md'><FaBook className='text-sky-600 '/> Mata Pelajaran: {teacherItem?.subject}</p>
+                                                <p className='text-sm md:text-md text-gray-600 capitalize flex items-center gap-2'><FaBuilding className='text-sky-600'/> Jurusan: <span>{teacherItem?.department}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +94,7 @@ const AllTeacher = () => {
                         </Slider>
                     )
                 ) : (
-                    <p className='text-center text-lg text-red-600 mt-8'>Belum ada guru terbaik</p>
+                    <p className='text-center text-lg text-red-600 mt-8'>🚫Tidak ada data guru</p>
                 )}
             </div>
         </div>
