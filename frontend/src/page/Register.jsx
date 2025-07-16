@@ -153,7 +153,6 @@ const Register = () => {
                             <option value="">Pilih Role</option>
                             <option value="Murid">Murid</option>
                             <option value="Guru">Guru</option>
-                            <option value="Admin">Admin</option>
                         </select>
                     </div>
                     
@@ -219,6 +218,7 @@ const Register = () => {
                                 accept='image/*'
                                 className='w-full outline-none text-gray-700'
                                 onChange={handleAvatarChange}
+                                required
                             />
                         </label>
                     </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { Context } from '../main'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Slider from 'react-slick'
@@ -9,11 +8,10 @@ import { FaBook, FaBuilding } from 'react-icons/fa'
 
 const AllTeacher = () => {
     const [teacher, setTeacher] = useState([]);
-    // const {user} = useContext(Context);
 
     const fetchTeacher = async () => {
         try {
-            const {data} = await axios.get("http://localhost:5050/api/v1/teacher/get-teacher", {
+            const {data} = await axios.get("http://localhost:5050/api/v1/teacher/get-all-teacher", {
                 withCredentials: true
             });
             setTeacher(data.teachers);
@@ -47,7 +45,7 @@ const AllTeacher = () => {
     }
 
     return (
-        <div className='bg-gradient-to-r from-sky-50 to-indigo-200 py-20' data-aos="fade-up">
+        <div className='bg-sky-50 py-20' data-aos="fade-up">
             <div className='max-w-[1440px] mx-auto px-4'>
                 <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-12 text-center' data-aos="fade-up">🎓 Kenali Guru Kami</h1>
 

@@ -6,14 +6,13 @@ import AllTeacher from '../components/AllTeacher'
 import Testimonials from '../components/Testimonials'
 import Map from '../components/Map'
 
-
 const Home = () => {
   return (
     <div>
       <Hero />
       <PhotoLibrary />
-      <SchoolGallery />
       <AllTeacher />
+      <SchoolGallery />
       <Testimonials />
       <Map />
     </div>

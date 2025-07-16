@@ -6,13 +6,13 @@ const router = express.Router();
 // buat data guru
 router.post("/create-teacher", adminTokenAuth, createTeacherController);
 // ambil semua data guru
-router.get("/get-teacher", adminTokenAuth, getAllTeacherController);
+router.get("/get-all-teacher", getAllTeacherController);
 // ambil data guru berdasarkan id
-router.get("/single-teachers/:id", adminTokenAuth, getSingleTeacher);
+router.get("/single-teacher/:id", adminTokenAuth, getSingleTeacher);
 // update data guru
-router.put("/update-teachers/:id", adminTokenAuth, updateTeacherController);
+router.put("/update-teacher/:id", adminTokenAuth, updateTeacherController);
 // delete data guru
-router.delete("/delete-teachers/:id", deleteTeacherController);
+router.delete("/delete-teacher/:id", deleteTeacherController);
 // logout guru
 router.get("/logOut-teacher", teacherTokenAuth, logOutTeacher);
 // profil guru

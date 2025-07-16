@@ -21,6 +21,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Profile from './page/Profile'
 import ForgotPassword from './page/ForgotPassword'
+import Dashboard from './page/Dashboard'
 
 const App = () => {
   const {isAuth, setIsAuth, setUser} = useContext(Context);
@@ -130,6 +131,7 @@ const App = () => {
         <Route path='/register' element={!isAuth ? <Register /> : <Home />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+        <Route path='/dashboard' element={<Dashboard />}></Route>
         <Route path='*' element={<PageNotFound />}></Route>
       </Routes>
       <Footer />

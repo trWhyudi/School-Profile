@@ -4,7 +4,7 @@ import { PiPhoneCallFill } from "react-icons/pi";
 const Help = () => {
   return (
     <div>
-      <div className='bg-gray-200'>
+      <div className='bg-sky-50'>
         <div className='px-4 py-8 mt-16 md:px-8 lg:px-16 max-w-[1440px] mx-auto'>
           <h1 className='text-3xl sm:text-4xl font-bold text-center mb-10 text-sky-600'>Pusat Bantuan</h1>
           <section className='mb-12'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaSignInAlt, FaKey, FaUser } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("")
@@ -8,8 +8,6 @@ const ForgotPassword = () => {
     const [answer, setAnswer] = useState("")
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState("")
-
-    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
