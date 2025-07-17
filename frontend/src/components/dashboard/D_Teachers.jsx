@@ -210,7 +210,7 @@ const D_Teachers = () => {
           <div className='md:col-span-2 flex flex-col sm:flex-row gap-4'>
             <button 
               type='submit' 
-              className='flex-1 bg-sky-600 hover:bg-sky-700 text-white py-3 rounded-lg transition duration-300 cursor-pointer'
+              className='flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-300 cursor-pointer'
             >
               {updateId ? "Update Data Guru" : "Simpan Data Guru"}
             </button>
@@ -228,7 +228,7 @@ const D_Teachers = () => {
                     qualification: "",
                   });
                 }}
-                className='flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg transition duration-300'
+                className='flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg transition duration-300 cursor-pointer'
               >
                 Batal Edit
               </button>
@@ -241,7 +241,7 @@ const D_Teachers = () => {
         <div className='flex justify-between items-center mb-6'>
           <h2 className='text-xl font-semibold text-gray-800'>Data Guru</h2>
           <div className='text-sm text-gray-500'>
-            Total: {teachers.length} Guru
+            Total: {teachers.length}
           </div>
         </div>
 
@@ -271,7 +271,7 @@ const D_Teachers = () => {
                     <div className="flex space-x-2">
                       <button 
                         onClick={() => handleEdit(tcr)} 
-                        className="text-sky-600 hover:text-sky-800 px-2 py-1 rounded-md hover:bg-sky-100 cursor-pointer"
+                        className="text-indigo-600 hover:text-indigo-800 px-2 py-1 rounded-md hover:bg-indigo-100 cursor-pointer"
                       >
                         Edit
                       </button>

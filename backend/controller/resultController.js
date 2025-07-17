@@ -49,29 +49,38 @@ export const createResult = errorHandleMiddleware(async(req, res, next) => {
 })
 
 // ambil semua data hasil nilai
-export const getAllResult = errorHandleMiddleware(async(req, res, next) => {
+export const getAllResult = errorHandleMiddleware(async (req, res, next) => {
     try {
-        const results = await Result.find().populate("studentId").populate("examId");
+        const results = await Result.find()
+        .populate({
+            path: 'studentId',
+            populate: {
+            path: 'userId',
+            select: 'name email',
+            },
+        })
+        .populate("examId");
 
-        if (!results.length === 0) {
-            return next(new ErrorHandler("Data nilai akademik tidak ditemukan", 404));
+        if (results.length === 0) {
+        return next(new ErrorHandler("Data nilai akademik tidak ditemukan", 404));
         }
 
         res.status(200).json({
-            success: true,
-            message: "Semua data nilai akademik berhasil ditemukan",
-            results,
-        })
+        success: true,
+        message: "Semua data nilai akademik berhasil ditemukan",
+        results,
+        });
 
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            success: false,
-            message: "Error di get all result controller",
-            error: error.message,
-        })
+        success: false,
+        message: "Error di get all result controller",
+        error: error.message,
+        });
     }
-})
+});
+
 
 // ambil data hasil nilai berdasarkan id
 export const singleResult = errorHandleMiddleware(async(req, res, next) => {

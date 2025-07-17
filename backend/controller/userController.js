@@ -250,3 +250,89 @@ export const getAllUser = errorHandleMiddleware(async(req, res, next) => {
         })
     }
 });
+
+// update user
+export const updateUserController = errorHandleMiddleware(async (req, res, next) => {
+    try {
+        if (req.user._id.toString() !== req.params.id.toString()) {
+            return next(new ErrorHandler("Akses ditolak", 403));
+        }
+
+        const userId = req.params.id;
+        const { name, email, phone, address } = req.body;
+
+        const user = await User.findById(userId);
+        if (!user) {
+        return next(new ErrorHandler("User tidak ditemukan", 404));
+        }
+
+        if (req.files?.avatar) {
+            const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+            const { avatar } = req.files;
+
+            if (!allowedFormats.includes(avatar.mimetype)) {
+                return next(new ErrorHandler("Format gambar tidak didukung", 400));
+            }
+
+            // Hapus avatar lama dari Cloudinary
+            if (user.avatar?.public_id) {
+                await cloudinary.uploader.destroy(user.avatar.public_id);
+            }
+
+            // Upload avatar baru
+            const cloudinaryResponse = await cloudinary.uploader.upload(avatar.tempFilePath);
+
+            user.avatar = {
+                public_id: cloudinaryResponse.public_id,
+                url: cloudinaryResponse.secure_url,
+            };
+        }
+
+        // update data
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.phone = phone || user.phone;
+        user.address = address || user.address;
+
+        await user.save();
+
+        res.status(200).json({
+        success: true,
+        message: "Profil berhasil diperbarui",
+        user,
+        });
+    } catch (error) {
+        console.log(error);
+        next(new ErrorHandler("Gagal memperbarui profil", 500));
+    }
+});
+
+// delete user
+export const deleteUserController = errorHandleMiddleware(async (req, res, next) => {
+    try {
+        if (req.user._id.toString() !== req.params.id.toString()) {
+            return next(new ErrorHandler("Akses ditolak", 403));
+        }
+
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+        return next(new ErrorHandler("User tidak ditemukan", 404));
+        }
+
+        // jika pakai cloudinary, hapus avatar juga
+        if (user.avatar && user.avatar.public_id) {
+        await cloudinary.uploader.destroy(user.avatar.public_id);
+        }
+
+        await user.deleteOne();
+
+        res.status(200).json({
+        success: true,
+        message: "User berhasil dihapus",
+        });
+    } catch (error) {
+        console.log(error);
+        next(new ErrorHandler("Gagal menghapus user", 500));
+    }
+});

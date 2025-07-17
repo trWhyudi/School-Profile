@@ -11,8 +11,8 @@ router.get("/get-all-classes", adminTokenAuth, getAllClassController);
 // ambil kelas berdasarkan id
 router.get("/single-class/:id", adminTokenAuth, singleClassController);
 // update data kelas
-router.put("/updated-class/:id", adminTokenAuth, updateClassController);
+router.put("/update-class/:id", adminTokenAuth, updateClassController);
 // delete kelas
-router.delete("/deleted-class/:id", adminTokenAuth, deleteClassController)
+router.delete("/delete-class/:id", adminTokenAuth, deleteClassController)
 
 export default router;

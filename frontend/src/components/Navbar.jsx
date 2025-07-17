@@ -124,7 +124,7 @@ const Navbar = () => {
                     <img 
                       src={user.avatar.url} 
                       alt="avatar" 
-                      className="w-10 h-10 rounded-full object-cover border border-sky-300" 
+                      className="w-10 h-10 rounded-full object-cover border border-sky-300 cursor-pointer" 
                     />
                   ) : (
                     <FaUserCircle className='text-3xl text-sky-600'/>
@@ -152,13 +152,13 @@ const Navbar = () => {
                       <FaUserCircle className="text-sm" /> Profil Saya
                     </Link>
                     <button 
-                      className='w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 flex items-center gap-2 mt-1' 
+                      className='w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 flex items-center gap-2 mt-1 cursor-pointer' 
                       onClick={() => {
                         setProfileOpen(false);
                         logOutHandler();
                       }}
                     >
-                      <MdLogout /> Keluar
+                      <MdLogout /> LogOut
                     </button>
                   </div>
                 )}

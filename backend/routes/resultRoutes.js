@@ -10,8 +10,8 @@ router.get("/get-all-result", getAllResult);
 // ambil data nilai berdasarkan id
 router.get("/single-result/:id", singleResult);
 // update data nilai
-router.put("/updated-result/:id", updatedResult);
+router.put("/update-result/:id", updatedResult);
 // hapus data nilai
-router.delete("/deleted-result/:id", deletedResult);
+router.delete("/delete-result/:id", deletedResult);
 
 export default router;

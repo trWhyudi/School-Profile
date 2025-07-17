@@ -91,7 +91,7 @@ export const singleSubject = errorHandleMiddleware(async(req, res, next) => {
 export const updatedSubject = errorHandleMiddleware(async(req, res, next) => {
     try {
         const { id } = req.params;
-        const { name, classId } = req.body;
+        const { name, classId, teacherId } = req.body;
         const subject = await Subject.findById(id);
 
         if (!subject) {
@@ -100,6 +100,7 @@ export const updatedSubject = errorHandleMiddleware(async(req, res, next) => {
 
         subject.name = name||subject.name;
         subject.classId = classId||subject.classId;
+        subject.teacherId = teacherId||subject.teacherId;
 
         const updatedSubject = await subject.save();
 

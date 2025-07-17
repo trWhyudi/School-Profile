@@ -6,12 +6,12 @@ const router = express.Router();
 // buat data mata pelajaran
 router.post("/create-subject", createSubject);
 // ambil semua data mata pelajaran
-router.get("/get-all-subject", getAllSubject);
+router.get("/get-all-subjects", getAllSubject);
 // ambil data mata pelajaran berdasarkan id
 router.get("/single-subject/:id", singleSubject);
 // update data mata pelajaran
-router.put("/updated-subject/:id", updatedSubject);
+router.put("/update-subject/:id", updatedSubject);
 // hapus data mata pelajaran
-router.delete("/deleted-subject/:id", deletedSubject);
+router.delete("/delete-subject/:id", deletedSubject);
 
 export default router;

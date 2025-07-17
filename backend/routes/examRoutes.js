@@ -10,8 +10,8 @@ router.get("/get-all-exams", getAllExam);
 // ambil data ujian berdasarkan id
 router.get("/single-exam/:id", singleExam);
 // update data ujian
-router.put("/updated-exam/:id", updatedExam);
+router.put("/update-exam/:id", updatedExam);
 // hapus data ujian
-router.delete("/deleted-exam/:id", deletedExam);
+router.delete("/delete-exam/:id", deletedExam);
 
 export default router;

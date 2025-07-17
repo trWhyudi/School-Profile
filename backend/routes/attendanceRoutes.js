@@ -11,8 +11,8 @@ router.get("/get-all-attendance", adminTokenAuth, getAllAttendance);
 // ambil kehadiran berdasarkan id
 router.get("/single-attendance/:id", singleAttendance);
 // update data kehadiran
-router.put("/updated-attendance/:id", adminTokenAuth, updateAttendance);
+router.put("/update-attendance/:id", adminTokenAuth, updateAttendance);
 // hapus data kehadiran
-router.delete("/deleted-attendance/:id", adminTokenAuth, deleteAttendance);
+router.delete("/delete-attendance/:id", adminTokenAuth, deleteAttendance);
 
 export default router;

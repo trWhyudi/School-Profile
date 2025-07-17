@@ -7,7 +7,7 @@ import Fee from "../model/feeModel.js";
 export const createFee = errorHandleMiddleware(async(req, res, next) => {
     try {
         const { studentId, amount, dueDate, status, paymentDate } = req.body;
-        if (!studentId || !amount || !dueDate || !status || !paymentDate) {
+        if (!studentId || !amount || !dueDate || !status) {
             return next(new ErrorHandler("Isi form yang tersedia", 400));
         }
 
@@ -21,7 +21,7 @@ export const createFee = errorHandleMiddleware(async(req, res, next) => {
             amount, 
             dueDate: new Date(dueDate), 
             status: "Belum Dibayar", 
-            paymentDate: new Date(paymentDate),
+            paymentDate: status === 'Dibayar' ? new Date(paymentDate) : null,
         })
 
         const populateFee = await Fee.findById(fee._id).populate("studentId");
@@ -50,7 +50,12 @@ export const getAllFee = errorHandleMiddleware(async(req, res, next) => {
         if (studentId) query.studentId = studentId;
         if (dueDate) query.dueDate = dueDate;
 
-        const fees = await Fee.find(query).populate("studentId", "name rollNumber classId").sort("-dueDate");
+        const fees = await Fee.find(query).populate({
+            path: "studentId",
+            select: "userId",
+            populate: { path: "userId", select: "name" }
+        })
+        .sort("-dueDate");
 
         res.status(200).json({
             success: true,
@@ -96,11 +101,15 @@ export const singleFee = errorHandleMiddleware(async(req, res, next) => {
 export const updatedFee = errorHandleMiddleware(async(req, res, next) => {
     try {
         const { id } = req.params;
-        const { classId, amount, dueDate, status } = req.body;
+        const { amount, dueDate, status, paymentDate } = req.body;
 
         const updatedFee = await Fee.findByIdAndUpdate(
             id,
-            {classId, amount, dueDate, status },
+            { amount, 
+                dueDate, 
+                status, 
+                paymentDate: status === 'Dibayar' ? new Date(paymentDate) : null 
+            },
             {new: true},
         );
 

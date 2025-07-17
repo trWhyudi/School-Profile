@@ -239,7 +239,7 @@ return (
             name='rollNumber' 
             value={studentData.rollNumber}
             onChange={handleChange}
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           />
         </div>
@@ -251,7 +251,7 @@ return (
             name='admissionDate' 
             value={studentData.admissionDate}
             onChange={handleChange}
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           />
         </div>
@@ -264,7 +264,7 @@ return (
             name='name' 
             value={studentData.guardianInfo.name}
             onChange={handleChange}
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           />
         </div>
@@ -277,7 +277,7 @@ return (
             name='phone' 
             value={studentData.guardianInfo.phone}
             onChange={handleChange}
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           />
         </div>
@@ -290,7 +290,7 @@ return (
             name='relation' 
             value={studentData.guardianInfo.relation}
             onChange={handleChange}
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           />
         </div>
@@ -301,7 +301,7 @@ return (
             name="classId" 
             value={selectedClass} 
             onChange={(e) => setSelectedClass(e.target.value)} 
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
             required
           >
             <option value="">Pilih Tingkat Kelas</option>
@@ -319,7 +319,7 @@ return (
             name="section" 
             value={studentData.section} 
             onChange={handleChange} 
-            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent disabled:opacity-50'
+            className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:opacity-50'
             disabled={availableSections.length === 0}
             required
           >
@@ -333,7 +333,7 @@ return (
         <div className='md:col-span-2 flex flex-col sm:flex-row gap-4'>
           <button 
             type='submit' 
-            className='flex-1 bg-sky-600 hover:bg-sky-700 text-white py-3 rounded-lg transition duration-300 cursor-pointer'
+            className='flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-300 cursor-pointer'
           >
             {updateId ? "Update Data Murid" : "Simpan Data Murid"}
           </button>
@@ -356,7 +356,7 @@ return (
                   section: "",
                 });
               }}
-              className='flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg transition duration-300'
+              className='flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg transition duration-300 cursor-pointer'
             >
               Batal Edit
             </button>
@@ -369,7 +369,7 @@ return (
       <div className='flex justify-between items-center mb-6'>
         <h2 className='text-xl font-semibold text-gray-800'>Data Murid</h2>
         <div className='text-sm text-gray-500'>
-          Total: {students.length} Murid
+          Total: {students.length}
         </div>
       </div>
 
@@ -410,7 +410,7 @@ return (
                   <div className="flex space-x-2">
                     <button 
                       onClick={() => handleEdit(stu)} 
-                      className="text-sky-600 hover:text-sky-800 px-2 py-1 rounded-md hover:bg-sky-100 transition-colors cursor-pointer"
+                      className="text-indigo-600 hover:text-indigo-800 px-2 py-1 rounded-md hover:bg-indigo-100 transition-colors cursor-pointer"
                     >
                       Edit
                     </button>
