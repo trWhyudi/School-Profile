@@ -21,15 +21,15 @@ const About = () => {
               Tentang <span className='text-gray-800'>Kami</span>
             </h1>
             <p className='text-lg sm:text-xl text-gray-600 leading-relaxed'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem illo repudiandae aperiam laudantium dolor in dolores saepe recusandae veniam qui.
+              SMAN 1 Cibitung adalah lembaga pendidikan menengah yang berkomitmen untuk mencetak generasi muda yang berprestasi, berkarakter, dan siap menghadapi tantangan masa depan. Sekolah kami telah menjadi pilihan utama bagi para orang tua dan siswa yang mengutamakan pendidikan berkualitas dengan nilai-nilai moral yang kuat.
             </p>
             <p className='text-lg sm:text-xl text-gray-600 leading-relaxed'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem illo repudiandae aperiam laudantium dolor in dolores saepe recusandae veniam qui.
+              Kami percaya bahwa pendidikan bukan hanya tentang akademik, tetapi juga pembentukan karakter, kepemimpinan, dan kepedulian sosial. Dengan didukung oleh tenaga pendidik profesional, fasilitas yang memadai, serta lingkungan belajar yang kondusif, kami terus berupaya memberikan yang terbaik bagi seluruh peserta didik.
             </p>
           </div>
           <div className='md:w-1/2'>
             <img 
-              src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              src="images/hero/Hero2.jpg" 
               alt="Sekolah kami" 
               className='rounded-lg shadow-xl w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]'
             />
@@ -59,7 +59,7 @@ const About = () => {
             <div>
               <h3 className='text-xl font-semibold mb-4'>Visi</h3>
               <p className='text-lg opacity-90'>
-                Menjadi institusi pendidikan unggulan yang menghasilkan generasi berkarakter, berkompeten, dan berdaya saing global.
+                Menjadi sekolah yang membentuk generasi berakhlak mulia, berprestasi, dan siap menghadapi tantangan global.
               </p>
             </div>
             <div>
@@ -67,15 +67,15 @@ const About = () => {
               <ul className='space-y-3 text-lg opacity-90'>
                 <li className='flex items-start'>
                   <span className='mr-2'>•</span>
-                  <span>Menyelenggarakan pendidikan berkualitas</span>
+                  <span>Meningkatkan kualitas pembelajaran yang inovatif, kreatif, dan berorientasi pada kebutuhan masa depan.</span>
                 </li>
                 <li className='flex items-start'>
                   <span className='mr-2'>•</span>
-                  <span>Mengembangkan potensi peserta didik secara holistik</span>
+                  <span>Membentuk karakter siswa yang disiplin, bertanggung jawab, dan memiliki kepedulian sosial.</span>
                 </li>
                 <li className='flex items-start'>
                   <span className='mr-2'>•</span>
-                  <span>Membentuk karakter yang kuat dan berakhlak mulia</span>
+                  <span>Membangun budaya sekolah yang sehat, aman, dan nyaman bagi seluruh warga sekolah.</span>
                 </li>
               </ul>
             </div>

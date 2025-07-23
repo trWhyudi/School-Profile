@@ -5,46 +5,39 @@ const SchoolGallery = () => {
     const [gallery, setGallery] = useState([
         {
             id: 1,
-            title: "School Building",
+            title: "Pameran Seni SMAN 1 Cibitung",
             likes: 12,
             isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1625027382554-3c9d2a1f8e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+            imageUrl: "/images/galeri/galeri1.jpeg"
         },
         {
             id: 2,
-            title: "Classroom Activity",
-            likes: 8,
+            title: "Pameran Seni SMAN 1 Cibitung",
+            likes: 18,
             isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
+            imageUrl: "/images/galeri/galeri2.jpeg"
         },
         {
             id: 3,
-            title: "Sports Day",
+            title: "Kegiatan Expo Kampus SMAN 1 Cibitung",
             likes: 15,
             isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+            imageUrl: "/images/galeri/galeri3.jpeg"
         },
         {
             id: 4,
-            title: "Science Fair",
-            likes: 20,
+            title: "Wisata Sains SMAN 1 Cibitung",
+            likes: 17,
             isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            imageUrl: "/images/galeri/galeri4.jpg"
         },
         {
             id: 5,
-            title: "Graduation Ceremony",
-            likes: 25,
+            title: "Wisata Sains SMAN 1 Cibitung",
+            likes: 24,
             isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            imageUrl: "/images/galeri/galeri5.jpg"
         },
-        {
-            id: 6,
-            title: "Art Exhibition",
-            likes: 18,
-            isLiked: false,
-            imageUrl: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=745&q=80"
-        }
     ])
 
     const [selectedImage, setSelectedImage] = useState(null)
@@ -70,8 +63,8 @@ const SchoolGallery = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-sky-50 to-indigo-200 py-12 px-4 sm:px-6 lg:px-8" data-aos="fade-up">
             <div className="max-w-[1440px] mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-sky-600 text-center mb-2">School Gallery</h2>
-                <p className="text-lg text-gray-600 text-center mb-12">Memorable moments from our school</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-sky-600 text-center mb-2">Galeri Sekolah</h2>
+                <p className="text-lg text-gray-600 text-center mb-12">Semua kegiatan di sekolah kami</p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {gallery.map((item) => (

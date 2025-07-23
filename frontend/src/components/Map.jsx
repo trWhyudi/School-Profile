@@ -38,7 +38,7 @@ const Map = () => {
                   <FaPhone className='flex-shrink-0 h-6 w-6 text-sky-600 mt-1' />
                   <div className='ml-3'>
                     <p className='text-base font-medium text-gray-900'>Telepon</p>
-                    <p className='text-base text-gray-500'>(021) 12345678</p>
+                    <p className='text-base text-gray-500'>+62 812 3456 7890</p>
                   </div>
                 </div>
 
@@ -47,8 +47,8 @@ const Map = () => {
                   <div className='ml-3'>
                     <p className='text-base font-medium text-gray-900'>Jam Operasional</p>
                     <p className='text-base text-gray-500'>
-                      Senin-Jumat: 7:00 - 16:00 WIB<br />
-                      Sabtu: 8:00 - 13:00 WIB
+                      Senin-Jumat: 07:00 - 16:00 WIB<br />
+                      Sabtu: 07:00 - 15:00 WIB
                     </p>
                   </div>
                 </div>

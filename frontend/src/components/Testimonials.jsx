@@ -6,21 +6,21 @@ import "slick-carousel/slick/slick-theme.css"
 const TestimonialData = [
     {
         id: 1,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
-        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        name: "Bapak Andi, Orang Tua Murid",
+        text: "Saya merasa sangat nyaman dan percaya menyekolahkan anak saya di sini. Lingkungan yang ramah dan guru-gurunya sabar membuat anak saya semakin semangat belajar.",
+        img: "/images/testimoni/people1.png"
     },
     {
         id: 2,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
-        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        name: "Ibnu, Alumni",
+        text: "Fasilitas lengkap dan metode pengajarannya modern. Sekolah ini benar-benar mendukung potensi siswa untuk berkembang secara maksimal.",
+        img: "/images/testimoni/people2.png"
     },
     {
         id: 3,
-        name: "John Doe",
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
-        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        name: "Maya, Siswa Kelas 12",
+        text: "Guru-guru di sekolah ini sangat perhatian dan selalu mendorong siswa untuk aktif dalam berbagai kegiatan, baik akademik maupun ekstrakurikuler.",
+        img: "/images/testimoni/people3.png"
     },
 ]
 

@@ -10,7 +10,7 @@ const Footer = () => {
         <div className='max-w-[1440px] mx-auto grid md:grid-cols-4 gap-20'>
           <div className=''>
             <h2 className='text-2xl md:text-3xl font-bold text-sky-500'>SMAN 1 Cibitung</h2>
-            <p className='text-gray-300 text-lg font-serif font-medium mt-2'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, dolor!</p>
+            <p className='text-gray-300 text-lg font-sans mt-2'>SMAN 1 Cibitung adalah institusi pendidikan yang berlokasi di Cibitung, Bekasi. Kami berkomitmen untuk memberikan pendidikan berkualitas, membentuk karakter siswa, dan menciptakan lingkungan belajar yang aman, nyaman, dan menyenangkan.</p>
           </div>
           <div>
             <h3 className='text-lg font-semibold mb-3 md:text-xl font-sans text-sky-500'>Tautan Cepat</h3>
@@ -26,9 +26,6 @@ const Footer = () => {
               </li>
               <li className='hover:text-sky-500 cursor-pointer'>
                 <Link to={"/contact"}>Kontak</Link>
-              </li>
-              <li className='hover:text-sky-500 cursor-pointer'>
-                <Link to={"/policy"}>Kebijakan Privasi</Link>
               </li>
             </ul>
           </div>
@@ -52,14 +49,14 @@ const Footer = () => {
           <div>
             <h3 className='text-lg font-semibold mb-3 text-sky-500'>Ikuti Kami</h3>
             <div className='flex gap-4 cursor-pointer items-center'>
-              <Link to={""}>
+              <Link to={"http://instagram.com/officialsmanci_/"}>
+                <FaInstagram size={22} className='hover:text-pink-600'/>
+              </Link>
+              <Link to={"https://www.facebook.com/sman1cibitung"}>
                 <FaFacebookSquare size={22} className='hover:text-blue-600'/>
               </Link>
               <Link to={""}>
                 <FaYoutube size={22} className='hover:text-red-600'/>
-              </Link>
-              <Link to={""}>
-                <FaInstagram size={22} className='hover:text-pink-600'/>
               </Link>
             </div>
           </div>

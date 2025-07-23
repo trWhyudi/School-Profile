@@ -36,7 +36,7 @@ const Policy = () => {
         <div>
           <h2 className='text-3xl md:text-4xl font-bold text-sky-600 mb-4 text-center'>Kebijakan Privasi</h2>
           <p className='text-gray-600 text-center mb-12 text-md md:text-lg font-normal cursor-pointer'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, vitae!
+            SMAN 1 Cibitung berkomitmen menjaga kerahasiaan data pribadi pengguna yang diakses melalui website ini.<br /> Setiap informasi yang dikumpulkan akan digunakan hanya untuk keperluan layanan sekolah dan tidak dibagikan tanpa izin.
           </p>
           <div className='space-y-12'>
             {policies.map((item, index) => (

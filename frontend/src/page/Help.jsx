@@ -9,7 +9,7 @@ const Help = () => {
           <h1 className='text-3xl sm:text-4xl font-bold text-center mb-10 text-sky-600'>Pusat Bantuan</h1>
           <section className='mb-12'>
             <h1 className='text-xl sm:text-2xl font-semibold mb-4 text-gray-800'>Informasi Umum</h1>
-            <p className='text-gray-600 text-sm sm:text-base md:text-lg font-sans'>Sekolah SMAN 1 Cibitung adalah institusi pendidikan yang berdiri sejak tahun 2005, berlokasi di Cibitung, Bekasi. Kami berkomitmen untuk memberikan pendidikan berkualitas, membentuk karakter siswa, dan menciptakan lingkungan belajar yang aman, nyaman, dan menyenangkan.</p>
+            <p className='text-gray-600 text-sm sm:text-base md:text-lg font-sans'>Sekolah SMAN 1 Cibitung adalah institusi pendidikan yang berlokasi di Cibitung, Bekasi. Kami berkomitmen untuk memberikan pendidikan berkualitas, membentuk karakter siswa, dan menciptakan lingkungan belajar yang aman, nyaman, dan menyenangkan.</p>
           </section>
           <section className='mb-12'>
             <h2 className='text-xl sm:text-2xl font-semibold mb-6 text-gray-800'>Pertanyaan Umum</h2>
@@ -32,9 +32,9 @@ const Help = () => {
             <h2 className='text-xl sm:text-2xl font-semibold mb-4 text-gray-800'>📞Hubungi Kami</h2>
             <p className='text-gray-600 text-sm sm:text-base mb-4'>Jika Anda mengalami masalah, silakan hubungi kami.</p>
             <ul className='text-gray-700 text-sm sm:text-base mb-4'>
-              <li>Email: <strong>info@gmail.com</strong></li>
+              <li>Email: <strong>sman1cibitung@gmail.com</strong></li>
               <li>Phone: <strong>+62 812 3456 7890</strong></li>
-              <li>Waktu Buka: <strong>Senin-Jumat, 09:00 - 17:00</strong></li>
+              <li>Waktu Buka: <strong>Senin-Jumat, 07:00 - 16:00</strong></li>
             </ul>
           </section>
         </div>
