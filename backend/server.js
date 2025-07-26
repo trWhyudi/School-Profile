@@ -17,6 +17,8 @@ import examRoutes from "./routes/examRoutes.js";
 import feeRoutes from "./routes/feeRoutes.js";
 import resultRoutes from "./routes/resultRoutes.js";
 import subjectRoutes from "./routes/subjectRoutes.js";
+import newsRoutes from "./routes/newsRoutes.js";
+import galleryRoutes from "./routes/galleryRoutes.js";
 
 // port
 const app = express();
@@ -60,6 +62,8 @@ app.use("/api/v1/exam", examRoutes);
 app.use("/api/v1/fee", feeRoutes);
 app.use("/api/v1/result", resultRoutes);
 app.use("/api/v1/subject", subjectRoutes);
+app.use("/api/v1/news", newsRoutes);
+app.use("/api/v1/gallery", galleryRoutes);
 
 // listen server
 app.listen(port, () => {

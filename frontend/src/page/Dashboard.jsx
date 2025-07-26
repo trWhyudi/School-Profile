@@ -11,6 +11,8 @@ import D_Subjects from '../components/dashboard/D_Subjects';
 import D_Attendance from '../components/dashboard/D_Attendance';
 import D_Exams from '../components/dashboard/D_Exams';
 import D_Profile from '../components/dashboard/D_Profile';
+import D_News from '../components/dashboard/D_News';
+import D_Gallery from '../components/dashboard/D_Gallery';
 
 const Dashboard = () => {
     const { isAuth, user } = useContext(Context);
@@ -46,6 +48,10 @@ const Dashboard = () => {
             return <D_Exams />;
         case "Profil":
             return <D_Profile />;
+        case "Berita":
+            return <D_News />;
+        case "Galeri":
+            return <D_Gallery />;
         default:
             return (
             <div className="text-center text-red-600 text-xl mt-10">

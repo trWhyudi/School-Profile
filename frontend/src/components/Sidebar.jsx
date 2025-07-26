@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react'
 import { Context } from '../main'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaBookOpen, FaClipboardList, FaHome, FaListAlt, FaMoneyCheckAlt, FaSchool, FaSignOutAlt, FaUserCircle, FaUser, FaArrowAltCircleLeft, FaUserGraduate } from 'react-icons/fa'
+import { FaBookOpen, FaClipboardList, FaHome, FaListAlt, FaMoneyCheckAlt, FaSchool, FaSignOutAlt, FaUserCircle, FaUser, FaArrowAltCircleLeft, FaUserGraduate, FaNewspaper } from 'react-icons/fa'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { BsBookmarkCheckFill } from "react-icons/bs";
+import { GrGallery } from "react-icons/gr";
 import axios from 'axios'
 
 const Sidebar = ({ setComponents }) => {
@@ -102,6 +103,16 @@ const Sidebar = ({ setComponents }) => {
         {
         label: "Ujian",
         icon: <FaClipboardList className="text-xl" />,
+        color: "bg-gradient-to-r from-indigo-100 to-indigo-50 hover:from-indigo-200 hover:to-indigo-100 text-indigo-700 hover:text-indigo-900",
+        },
+        {
+        label: "Berita",
+        icon: <FaNewspaper className="text-xl" />,
+        color: "bg-gradient-to-r from-indigo-100 to-indigo-50 hover:from-indigo-200 hover:to-indigo-100 text-indigo-700 hover:text-indigo-900",
+        },
+        {
+        label: "Galeri",
+        icon: <GrGallery className="text-xl" />,
         color: "bg-gradient-to-r from-indigo-100 to-indigo-50 hover:from-indigo-200 hover:to-indigo-100 text-indigo-700 hover:text-indigo-900",
         },
         {

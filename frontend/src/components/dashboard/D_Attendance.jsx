@@ -199,7 +199,7 @@ const D_Attendance = () => {
           <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 mt-2">
             <button
               type="submit"
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-300"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-300 cursor-pointer"
             >
               {updateId ? 'Update Presensi' : 'Simpan Presensi'}
             </button>
@@ -210,7 +210,7 @@ const D_Attendance = () => {
                   setFormData({ studentId: '', classId: '', date: '', status: '' });
                   setUpdateId(null);
                 }}
-                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg"
+                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg cursor-pointer"
               >
                 Batal Edit
               </button>
@@ -250,13 +250,13 @@ const D_Attendance = () => {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEdit(att)}
-                          className="text-indigo-600 hover:text-indigo-800 px-2 py-1 rounded-md hover:bg-indigo-100"
+                          className="text-indigo-600 hover:text-indigo-800 px-2 py-1 rounded-md hover:bg-indigo-100 cursor-pointer"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDelete(att._id)}
-                          className="text-red-600 hover:text-red-800 px-2 py-1 rounded-md hover:bg-red-100"
+                          className="text-red-600 hover:text-red-800 px-2 py-1 rounded-md hover:bg-red-100 cursor-pointer"
                         >
                           Hapus
                         </button>
