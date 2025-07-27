@@ -33,12 +33,12 @@ const photoBars = [
 
 const PhotoLibrary = () => {
   return (
-    <div className='bg-gradient-to-br from-sky-50 to-indigo-200 py-16 px-4' data-aos="fade-up">
+    <div className='bg-gradient-to-br from-sky-50 to-indigo-200 py-20 px-4' data-aos="fade-up">
         <div className='max-w-[1440px] mx-auto'>
             <div className='text-center mb-16'>
-                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-2'>Fasilitas Unggulan Sekolah Kami</h1>
-                <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
-                    Temukan lingkungan belajar yang mendukung dengan fasilitas modern dan lengkap
+                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-3'>Fasilitas Unggulan Sekolah Kami</h1>
+                <p className='text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center'>
+                    Beragam Sarana Modern dan Nyaman yang Dirancang untuk Mendukung Proses Belajar Mengajar secara Optimal dan Menyenangkan bagi Siswa
                 </p>
             </div>
             
@@ -66,18 +66,9 @@ const PhotoLibrary = () => {
                             <p className='text-gray-600 text-sm line-clamp-2 sm:hidden'>
                                 {item.description}
                             </p>
-                            <button className='mt-4 text-sm font-medium text-sky-600 hover:text-sky-800 transition-colors hidden sm:block'>
-                                Lihat Detail →
-                            </button>
                         </div>
                     </div>
                 ))}
-            </div>
-            
-            <div className='text-center mt-16'>
-                <button className='px-8 py-3 bg-sky-600 text-white font-medium rounded-lg hover:bg-sky-700 transition-colors shadow-md hover:shadow-lg'>
-                    Lihat Semua Fasilitas
-                </button>
             </div>
         </div>
     </div>

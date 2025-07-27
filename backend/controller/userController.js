@@ -3,6 +3,8 @@ import ErrorHandler from "../middleware/errorMiddleware.js";
 import User from "../model/userModel.js";
 import { jsontoken } from "../utils/token.js";
 import cloudinary from "cloudinary";
+import { sendEmail } from "../utils/sendEmail.js";
+import crypto from "crypto";
 
 // register user
 export const createUserController = errorHandleMiddleware(async(req, res, next) => {
@@ -335,4 +337,103 @@ export const deleteUserController = errorHandleMiddleware(async (req, res, next)
         console.log(error);
         next(new ErrorHandler("Gagal menghapus user", 500));
     }
+});
+
+// Lupa password
+export const forgotPassword = errorHandleMiddleware(async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+        return next(new ErrorHandler("User tidak ditemukan dengan email ini", 404));
+    }
+
+    const resetToken = user.getResetPasswordToken();
+    await user.save({ validateBeforeSave: false });
+
+    const resetPasswordUrl = `http://localhost:5173/reset-password/${resetToken}`;
+
+    const htmlContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <div style="text-align: center;">
+            <h2 style="color: #1E90FF; margin-bottom: 10px;">Reset Password Akun Anda</h2>
+            </div>
+
+            <p style="font-size: 16px; color: #333;">Halo <strong>${user.name}</strong>,</p>
+            <p style="font-size: 15px; color: #555;">
+            Kami menerima permintaan untuk mereset password akun Anda. Klik tombol di bawah ini untuk melanjutkan proses reset:
+            </p>
+
+            <div style="text-align: center; margin: 30px 0;">
+            <a href="${resetPasswordUrl}" style="background-color: #1E90FF; color: white; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 16px;">
+                Reset Password
+            </a>
+            </div>
+
+            <p style="font-size: 14px; color: #777;">
+            Link ini hanya berlaku selama <strong>15 menit</strong> untuk alasan keamanan. Jika Anda tidak meminta reset ini, Anda bisa mengabaikan email ini dan tidak ada perubahan yang akan dilakukan.
+            </p>
+
+            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;" />
+
+            <p style="font-size: 13px; color: #999; text-align: center;">
+            © 2025 SMAN 1 Cibitung – Semua Hak Dilindungi.
+            </p>
+        </div>
+    `;
+
+
+    try {
+        await sendEmail({
+            to: user.email,
+            subject: "Reset Password",
+            text: `Reset password link: ${resetPasswordUrl}`,
+            html: htmlContent,
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email reset password telah dikirim ke ${user.email}`,
+        });
+    } catch (error) {
+        console.error("Email send error:", error);
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save({ validateBeforeSave: false });
+
+        return next(new ErrorHandler("Gagal mengirim email", 500));
+    }
+});
+
+// Reset password
+export const resetPassword = errorHandleMiddleware(async (req, res, next) => {
+    const resetPasswordToken = crypto
+        .createHash("sha256")
+        .update(req.params.token)
+        .digest("hex");
+
+    const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+        return next(new ErrorHandler("Token reset tidak valid atau kadaluarsa", 400));
+    }
+
+    const { password } = req.body;
+
+    if (!password || password.length < 6) {
+        return next(new ErrorHandler("Password minimal 6 karakter", 400));
+    }
+
+    user.password = password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    res.status(200).json({
+        success: true,
+        message: "Password berhasil diubah",
+    });
 });

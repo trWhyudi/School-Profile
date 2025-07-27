@@ -47,8 +47,11 @@ const AllTeacher = () => {
     return (
         <div className='bg-sky-50 py-20' data-aos="fade-up">
             <div className='max-w-[1440px] mx-auto px-4'>
-                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-12 text-center' data-aos="fade-up">🎓 Kenali Guru Kami</h1>
-
+                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 text-center mb-3'>Kenali Guru Kami</h1>
+                <p className='text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center'>
+                Profil Para Guru Profesional yang Berdedikasi dalam Mendidik, Membimbing, dan Menginspirasi Siswa Menuju Masa Depan Gemilang
+                </p>
+                
                 {teacher && teacher.length > 0 ? (
                     teacher.length === 1 ? (
                         <div className='flex justify-center'  data-aos="zoom-in">
@@ -73,7 +76,7 @@ const AllTeacher = () => {
                         <Slider {...settings}>
                             {teacher.map((teacherItem) => (
                                 <div key={teacherItem._id} className='px-4 cursor-pointer' data-aos="zoom-in">
-                                    <div className='bg-white/80 backdrop-blur-lg border border-cyan-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300'>
+                                    <div className='bg-white/80 backdrop-blur-lg border border-sky-200 rounded-2xl shadow-xl p-6 transition-transform hover:scale-105 duration-300 my-8'>
                                         <div className='flex items-center gap-4 mb-4'>
                                             <img 
                                                 src={teacherItem?.userId?.avatar?.url || '/default-avatar.png'} 

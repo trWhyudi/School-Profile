@@ -65,10 +65,10 @@ const SchoolGallery = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-sky-50 to-indigo-200 py-12 px-4 sm:px-6 lg:px-8" data-aos="fade-up">
         <div className="max-w-[1440px] mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-sky-600 text-center mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-sky-600 text-center mb-3">
             Galeri Sekolah
             </h2>
-            <p className="text-lg text-gray-600 text-center mb-12">Semua kegiatan di sekolah kami</p>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center">Kumpulan Momen Berharga, Kegiatan Seru, dan Suasana Pembelajaran di Sekolah Kami</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="zoom-in">
             {gallery.map((item) => (

@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaDirections, FaPhone, FaClock } from 'react-icons/fa';
 
 const Map = () => {
   return (
-    <div className='bg-gradient-to-r from-sky-50 to-indigo-200 py-16 px-4 sm:px-6 lg:px-8' data-aos="fade-up">
+    <div className='bg-sky-50 py-16 px-4 sm:px-6 lg:px-8' data-aos="fade-up">
       <div className='max-w-[1440px] mx-auto'>
         {/* Header Section */}
         <div className='text-center mb-12'>
@@ -17,7 +17,7 @@ const Map = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8' data-aos="zoom-in">
           {/* Information Card */}
           <div className='bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col justify-between'>
             <div>

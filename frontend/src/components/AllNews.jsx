@@ -40,9 +40,10 @@ const AllNews = () => {
     return (
         <div className="bg-sky-50 py-20" data-aos="fade-up">
             <div className="max-w-[1440px] mx-auto px-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-sky-600 mb-12 text-center">
+                <h1 className="text-3xl md:text-4xl font-bold text-sky-600 mb-3 text-center">
                     Berita Sekolah
                 </h1>
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center">Dapatkan Informasi Terbaru tentang Kegiatan Sekolah, Prestasi Siswa, Agenda Pendidikan, dan Update Penting Lainnya</p>
 
                 {newsList && newsList.length > 0 ? (
                     newsList.length === 1 ? (
