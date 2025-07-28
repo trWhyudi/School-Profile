@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../main'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -13,6 +13,17 @@ const Sidebar = ({ setComponents }) => {
     const { user, setIsAuth } = useContext(Context);
     const [activeMenu, setActiveMenu] = useState("Profil");
     const navigateTo = useNavigate();
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1280) {
+                setShow(false);
+            }
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleLogOut = async (e) => {
         e.preventDefault();
@@ -56,9 +67,11 @@ const Sidebar = ({ setComponents }) => {
     const handleChangePage = (value) => {
         setComponents(value);
         setActiveMenu(value);
+        if (window.innerWidth < 1280) {
+            setShow(false);
+        }
     }
 
-    // Semua menu yang ada
     const allMenuItems = [
         {
         label: "Profil",
@@ -132,9 +145,8 @@ const Sidebar = ({ setComponents }) => {
     let menuItems = [];
 
     if (user?.role === "Admin") {
-        menuItems = allMenuItems; // Semua menu untuk Admin
+        menuItems = allMenuItems;
     } else {
-        // Guru dan Murid hanya boleh lihat Profil, Beranda, LogOut
         menuItems = allMenuItems.filter(item =>
         ["Profil", "Beranda", "LogOut"].includes(item.label)
         );
@@ -142,41 +154,63 @@ const Sidebar = ({ setComponents }) => {
 
     return (
         <div>
-        <div className='fixed top-5 left-5 mt-4 bg-white shadow-lg text-indigo-600 p-3 rounded-full flex items-center justify-center cursor-pointer z-30 lg:hidden hover:bg-indigo-100 hover:text-indigo-800 transition-all duration-300' onClick={() => setShow(!show)}>
-            <RxHamburgerMenu className='text-2xl' />
-        </div>
-        <aside className={`fixed xl:relative top-0 left-0 h-full lg:h-screen w-[250px] lg:w-72 bg-gradient-to-b from-white to-indigo-50 border-r border-indigo-100 shadow-xl flex flex-col transition-all duration-300 z-40 ${show ? "translate-x-0" : "-translate-x-full"} xl:translate-x-0`}>
-            <div className='absolute top-5 left-4 cursor-pointer xl:hidden bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition-colors duration-300' onClick={() => setShow(!show)}>
-            <FaArrowAltCircleLeft />
+            <div 
+                className='fixed top-5 left-2 mt-16 bg-white shadow-lg text-indigo-600 p-3 rounded-full flex items-center justify-center cursor-pointer z-50 lg:hidden hover:bg-indigo-100 hover:text-indigo-800 transition-all duration-300' 
+                onClick={() => setShow(!show)}
+            >
+                <RxHamburgerMenu className='text-2xl' />
             </div>
-            <div className='flex flex-col items-center mt-20 lg:mt-30'>
-            <div className='relative'>
-                <img src={user?.avatar?.url} alt="Avatar" className="w-20 h-20 rounded-full object-cover border-4 border-indigo-500 shadow-md" />
-                <div className='absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white'></div>
-            </div>
-            <p className='mt-4 text-lg font-semibold text-gray-800 uppercase tracking-wider'>{user?.name}</p>
-            <p className='text-sm text-indigo-600 font-medium mt-1'>{user?.role}</p>
-            </div>
-            <div className='flex flex-col gap-3 mt-8 px-4 overflow-y-auto flex-1 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
-            {menuItems.map(({ label, icon, color, isLogout }) => (
-                <button
-                key={label}
-                onClick={isLogout ? handleLogOut : label === "Beranda" ? handleHomePage : () => handleChangePage(label)}
-                className={`
-                    flex items-center justify-between px-6 py-3 mt-0.5 rounded-xl text-lg font-medium transition-all duration-300 cursor-pointer
-                    ${color}
-                    ${activeMenu === label ? "ring-2 ring-indigo-400 bg-indigo-200 font-bold shadow-md" : ""}
-                `}
+            
+            {/* Overlay untuk mobile */}
+            {show && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+                    onClick={() => setShow(false)}
+                />
+            )}
+            
+            <aside 
+                className={`fixed xl:relative top-0 left-0 h-full lg:h-screen w-[250px] lg:w-72 bg-gradient-to-b from-white to-indigo-50 border-r border-indigo-100 shadow-xl flex flex-col transition-all duration-300 ${
+                    show ? "translate-x-0 z-50" : "-translate-x-full lg:z-30"
+                } xl:translate-x-0 xl:z-30`}
+            >
+                <div 
+                    className='absolute top-5 left-4 cursor-pointer xl:hidden bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition-colors duration-300' 
+                    onClick={() => setShow(false)}
                 >
-                <span>{label}</span>
-                <span className='opacity-80 hover:opacity-100'>{icon}</span>
-                </button>
-            ))}
-            </div>
-            <div className='p-4 text-center text-xs text-gray-500'>
-            © {new Date().getFullYear()} SMAN 1 Cibitung. <br />All rights reserved.
-            </div>
-        </aside>
+                    <FaArrowAltCircleLeft />
+                </div>
+                
+                <div className='flex flex-col items-center mt-20 lg:mt-30'>
+                    <div className='relative'>
+                        <img src={user?.avatar?.url} alt="Avatar" className="w-20 h-20 rounded-full object-cover border-4 border-indigo-500 shadow-md" />
+                        <div className='absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white'></div>
+                    </div>
+                    <p className='mt-4 text-lg font-semibold text-gray-800 uppercase tracking-wider'>{user?.name}</p>
+                    <p className='text-sm text-indigo-600 font-medium mt-1'>{user?.role}</p>
+                </div>
+                
+                <div className='flex flex-col gap-3 mt-8 px-4 overflow-y-auto flex-1 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
+                    {menuItems.map(({ label, icon, color, isLogout }) => (
+                        <button
+                            key={label}
+                            onClick={isLogout ? handleLogOut : label === "Beranda" ? handleHomePage : () => handleChangePage(label)}
+                            className={`
+                                flex items-center justify-between px-6 py-3 mt-0.5 rounded-xl text-lg font-medium transition-all duration-300 cursor-pointer
+                                ${color}
+                                ${activeMenu === label ? "ring-2 ring-indigo-400 bg-indigo-200 font-bold shadow-md" : ""}
+                            `}
+                        >
+                            <span>{label}</span>
+                            <span className='opacity-80 hover:opacity-100'>{icon}</span>
+                        </button>
+                    ))}
+                </div>
+                
+                <div className='p-4 text-center text-xs text-gray-500'>
+                    © {new Date().getFullYear()} SMAN 1 Cibitung. <br />All rights reserved.
+                </div>
+            </aside>
         </div>
     )
 }
