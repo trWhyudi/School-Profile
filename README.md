@@ -1,29 +1,29 @@
-# 🏫 Website Profil Sekolah – MERN Stack
+# 🏫 School Profile Website – MERN Stack
 
-Ini adalah proyek **Website Profil Sekolah** yang dibangun menggunakan **MERN Stack**:  
-MongoDB, Express.js, React.js, dan Node.js.
+This is a **School Profile Website** project built using the **MERN Stack**:  
+MongoDB, Express.js, React.js, and Node.js.
 
-## ✨ Fitur Utama
+## ✨ Key Features
 
-- Tampilan profil sekolah yang informatif dan responsif
-- CRUD data guru, siswa, galeri, dan berita sekolah
-- Autentikasi login menggunakan JWT
-- Upload gambar ke Cloudinary
-- Pengiriman email dengan SMTP (Nodemailer)
-- RESTful API untuk backend
+- Informative and responsive school profile display  
+- CRUD for teacher, student, gallery, and school news data  
+- Login authentication using JWT  
+- Image upload to Cloudinary  
+- Email sending via SMTP (Nodemailer)  
+- RESTful API for the backend
 
-## 🚀 Teknologi yang Digunakan
+## 🚀 Technologies Used
 
 ### 🔧 Backend:
-- Node.js
-- Express.js
-- MongoDB (Mongoose)
-- JWT (JSON Web Token)
-- Cloudinary (image hosting)
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT (JSON Web Token)  
+- Cloudinary (image hosting)  
 - Nodemailer (SMTP email)
 
 ### 🎨 Frontend:
-- React.js
-- Axios
-- React Router
+- React.js  
+- Axios  
+- React Router  
 - Tailwind
