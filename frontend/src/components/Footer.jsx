@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <div>
       <footer className='bg-gray-900 text-white pt-16 pb-8 px-6'>
-        <div className='max-w-[1440px] mx-auto grid md:grid-cols-4 gap-20'>
+        <div className='max-w-[1440px] mx-auto grid md:grid-cols-4 gap-10 md:gap-8 lg:gap-16 mb-8'>
           <div className=''>
             <h2 className='text-2xl md:text-3xl font-bold text-sky-500'>SMAN 1 Cibitung</h2>
-            <p className='text-gray-300 text-lg font-sans mt-2'>SMAN 1 Cibitung adalah institusi pendidikan yang berlokasi di Cibitung, Bekasi. Kami berkomitmen untuk memberikan pendidikan berkualitas, membentuk karakter siswa, dan menciptakan lingkungan belajar yang aman, nyaman, dan menyenangkan.</p>
+            <p className='text-gray-300 text-lg font-sans mt-2'>SMAN 1 Cibitung – Sekolah menengah di Bekasi yang menghadirkan pendidikan berkualitas dan lingkungan belajar yang mendukung.</p>
           </div>
           <div>
             <h3 className='text-lg font-semibold mb-3 md:text-xl font-sans text-sky-500'>Tautan Cepat</h3>

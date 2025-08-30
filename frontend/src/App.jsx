@@ -101,10 +101,11 @@ const App = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 700,
       offset: 100,
       easing: 'ease-in',
-      delay: 100
+      delay: 100,
+      once: true,
     });
     AOS.refresh();
   }, []);

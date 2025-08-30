@@ -81,7 +81,7 @@ const NewsCard = ({ item }) => {
                 />
             )}
             <h2 className="text-xl font-bold text-gray-800 mb-2 hover:underline">
-                {item.title}
+                {item.title.length > 50 ? item.title.substring(0, 50) + '...' : item.title}
             </h2>
             </Link>
             <p className="text-gray-600 line-clamp-3 mb-3">{item.content}</p>
