@@ -32,7 +32,7 @@ const policies = [
 const Policy = () => {
   return (
     <div className='min-h-screen bg-sky-50 pt-20 pb-16 px-6'>
-      <section className='max-w-[1440px] mx-auto py-8'>
+      <section className='max-w-[1440px] mx-auto py-8' data-aos="fade-in">
         <div>
           <h2 className='text-3xl md:text-4xl font-bold text-sky-600 mb-4 text-center'>Kebijakan Privasi</h2>
           <p className='text-gray-600 text-center mb-12 text-md md:text-lg font-normal cursor-pointer'>

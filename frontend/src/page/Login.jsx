@@ -44,7 +44,7 @@ const Login = () => {
   }
   return (
     <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-blue-100 py-8 px-4'>
-      <div className='bg-white rounded-xl shadow-xl p-6 md:p-8 w-full max-w-md'>
+      <div className='bg-white rounded-xl shadow-xl p-6 md:p-8 w-full max-w-md' data-aos="fade-in">
           <div className='text-center mb-8'>
               <h2 className='text-2xl md:text-3xl font-bold text-sky-600'>Login</h2>
               <p className='text-gray-600 mt-2'>Isi formulir berikut untuk mendaftar</p>

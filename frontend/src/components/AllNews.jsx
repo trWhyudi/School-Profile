@@ -38,8 +38,8 @@ const AllNews = () => {
     };
 
     return (
-        <div className="bg-sky-50 py-20" data-aos="fade-up">
-            <div className="max-w-[1440px] mx-auto px-4">
+        <div className="bg-sky-50 py-20">
+            <div className="max-w-[1440px] mx-auto px-4" data-aos="fade-up">
                 <h1 className="text-3xl md:text-4xl font-bold text-sky-600 mb-3 text-center">
                     Berita Sekolah
                 </h1>
@@ -47,7 +47,7 @@ const AllNews = () => {
 
                 {newsList && newsList.length > 0 ? (
                     newsList.length === 1 ? (
-                        <div className="flex justify-center" data-aos="zoom-in">
+                        <div className="flex justify-center" data-aos="fade-up">
                             <div className="max-w-md w-full">
                                 <NewsCard item={newsList[0]} />
                             </div>
@@ -55,7 +55,7 @@ const AllNews = () => {
                     ) : (
                         <Slider {...settings}>
                             {newsList.map((item) => (
-                                <div key={item._id} className="px-4 cursor-pointer" data-aos="zoom-in">
+                                <div key={item._id} className="px-4 cursor-pointer" data-aos="fade-up">
                                     <NewsCard item={item} />
                                 </div>
                             ))}

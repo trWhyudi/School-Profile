@@ -16,7 +16,7 @@ const About = () => {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16 mb-16 md:mb-24">
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
+          <div className="md:w-1/2 space-y-6 text-center md:text-left" data-aos="fade-right">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-sky-600">
               Tentang <span className="text-gray-800">Kami</span>
             </h1>
@@ -36,7 +36,7 @@ const About = () => {
               berupaya memberikan yang terbaik bagi seluruh peserta didik.
             </p>
           </div>
-          <div className="md:w-1/2">
+          <div className="md:w-1/2" data-aos="fade-left">
             <img
               src="images/hero/Hero2.jpg"
               alt="Sekolah kami"
@@ -46,7 +46,7 @@ const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6" data-aos="fade-up">
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -64,7 +64,7 @@ const About = () => {
         </div>
 
         {/* Additional Content (optional) */}
-        <div className="mt-24 bg-gradient-to-r from-sky-500 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
+        <div className="mt-24 bg-gradient-to-r from-sky-500 to-blue-600 rounded-2xl p-8 md:p-12 text-white" data-aos="fade-up">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             Visi dan Misi Kami
           </h2>

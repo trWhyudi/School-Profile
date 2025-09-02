@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa'
+import { Collapse } from "react-collapse";
 
 const faqData = [
   {
@@ -32,47 +33,52 @@ const Faq = () => {
   }
 
   return (
-    <section className='bg-sky-50 to-white py-20 px-6'>
-      <div className='max-w-4xl mx-auto'>
-        <div className='text-center mb-12'>
-          <FaQuestionCircle className='text-5xl text-sky-600 mx-auto mb-4' />
-          <h2 className='text-4xl font-bold text-gray-800'>Pertanyaan Umum (FAQ)</h2>
-          <p className='text-gray-600 mt-3 text-base md:text-lg font-sans'>
-            Punya pertanyaan? Berikut beberapa yang sering ditanyakan oleh orang tua dan calon siswa.
+    <section className="bg-sky-50 to-white pt-20 pb-40 px-6">
+      <div className="max-w-4xl mx-auto" data-aos="fade-in">
+        <div className="text-center mb-12">
+          <FaQuestionCircle className="text-5xl text-sky-600 mx-auto mb-4" />
+          <h2 className="text-4xl font-bold text-gray-800">
+            Pertanyaan Umum (FAQ)
+          </h2>
+          <p className="text-gray-600 mt-3 text-base md:text-lg font-sans">
+            Punya pertanyaan? Berikut beberapa yang sering ditanyakan oleh orang
+            tua dan calon siswa.
           </p>
         </div>
 
-        <div className='space-y-4'>
+        <div className="space-y-4">
           {faqData.map((faq, index) => (
-            <div 
-              key={index} 
-              className='bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all'
+            <div
+              key={index}
+              className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all"
             >
               <button
                 onClick={() => toggleIndex(index)}
-                className='w-full flex justify-between items-center text-left p-5 hover:bg-sky-50 transition-colors cursor-pointer'
+                className="w-full flex justify-between items-center text-left p-5 hover:bg-sky-50 transition-colors cursor-pointer"
               >
-                <span className='text-gray-800 font-medium text-md md:text-lg'>{faq.question}</span>
+                <span className="text-gray-800 font-medium text-md md:text-lg">
+                  {faq.question}
+                </span>
                 {activeIndex === index ? (
-                  <FaChevronUp className='text-sky-600' />
+                  <FaChevronUp className="text-sky-600" />
                 ) : (
-                  <FaChevronDown className='text-sky-600' />
+                  <FaChevronDown className="text-sky-600" />
                 )}
               </button>
 
-              <div
-                className={`px-5 pb-4 transition-all duration-300 ease-in-out ${
-                  activeIndex === index ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-                }`}
-              >
-                <p className='text-gray-600 text-sm md:text-base'>{faq.answer}</p>
-              </div>
+              <Collapse isOpened={activeIndex === index}>
+                <div className="px-5 pb-4">
+                  <p className="text-gray-600 text-sm md:text-base">
+                    {faq.answer}
+                  </p>
+                </div>
+              </Collapse>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Faq

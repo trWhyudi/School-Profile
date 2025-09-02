@@ -64,37 +64,50 @@ const Testimonials = () => {
     }
 
     return (
-        <div className='py-10 bg-gradient-to-r from-sky-50 to-indigo-200' data-aos="fade-up">
-            <div className='max-w-[1440px] mx-auto px-4'>
-                <div className='mb-10'>
-                    <h1 className='text-center text-3xl md:text-4xl font-bold text-sky-600 cursor-pointer mb-3'>Testimoni</h1>
-                    <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center">Cerita dan Pengalaman Nyata dari Siswa, Orang Tua, serta Alumni tentang Perjalanan Mereka Bersama Sekolah Kami</p>
+      <div className="py-10 bg-gradient-to-r from-sky-50 to-indigo-200">
+        <div className="max-w-[1440px] mx-auto px-4" data-aos="fade-up">
+          <div className="mb-10">
+            <h1 className="text-center text-3xl md:text-4xl font-bold text-sky-600 cursor-pointer mb-3">
+              Testimoni
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center">
+              Cerita dan Pengalaman Nyata dari Siswa, Orang Tua, serta Alumni
+              tentang Perjalanan Mereka Bersama Sekolah Kami
+            </p>
+          </div>
+          <div data-aos="fade-up">
+            <Slider {...settings}>
+              {TestimonialData.map((data) => (
+                <div key={data.id} className="my-6 cursor-pointer">
+                  <div className="flex flex-col gap-4 shadow-lg py-8 mx-4 rounded-xl bg-white relative px-4">
+                    <div className="mb-4">
+                      <img
+                        src={data.img}
+                        alt=""
+                        className="rounded-full w-20 h-20 object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="space-y-3">
+                        <p className="text-xl text-gray-500 font-light">
+                          {data.text}
+                        </p>
+                        <h1 className="text-black font-semibold text-xl font-cursive2">
+                          {data.name}
+                        </h1>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-9xl font-serif absolute top-0 right-0">
+                      ,,
+                    </p>
+                  </div>
                 </div>
-                <div data-aos="zoom-in">
-                    <Slider {...settings}>
-                        {
-                            TestimonialData.map((data) => (
-                                <div key={data.id} className='my-6 cursor-pointer'>
-                                    <div className='flex flex-col gap-4 shadow-lg py-8 mx-4 rounded-xl bg-white relative px-4'>
-                                        <div className='mb-4'>
-                                            <img src={data.img} alt="" className='rounded-full w-20 h-20 object-cover' />
-                                        </div>
-                                        <div className='flex flex-col items-center gap-4'>
-                                            <div className='space-y-3'>
-                                                <p className='text-xl text-gray-500 font-light'>{data.text}</p>
-                                                <h1 className='text-black font-semibold text-xl font-cursive2'>{data.name}</h1>
-                                            </div>
-                                        </div>
-                                        <p className='text-gray-300 text-9xl font-serif absolute top-0 right-0'>,,</p>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </Slider>
-                </div>
-            </div>
+              ))}
+            </Slider>
+          </div>
         </div>
-    )
+      </div>
+    );
 }
 
 export default Testimonials

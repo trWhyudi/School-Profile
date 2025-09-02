@@ -32,7 +32,7 @@ const terms = [
 const Terms = () => {
   return (
     <div className='bg-sky-50 pt-20 pb-16 px-6'>
-      <div className='max-w-[1440px] mx-auto py-8'>
+      <div className='max-w-[1440px] mx-auto py-8' data-aos="fade-in">
         <h2 className='text-3xl md:text-4xl font-bold text-sky-600 mb-4 text-center'>Syarat dan Ketentuan</h2>
         <p className='text-gray-600 text-center mb-12 font-sans'>Harap membaca dengan seksama syarat dan ketentuan berikut sebelum menggunakan layanan atau mendaftar di SMAN 1 Cibitung. <br /> Dengan melanjutkan, Anda menyetujui semua ketentuan yang berlaku.</p>
         <div className='space-y-10 cursor-pointer'>

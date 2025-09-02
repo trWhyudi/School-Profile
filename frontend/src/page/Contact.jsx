@@ -78,7 +78,7 @@ const Contact = () => {
   return (
     <div>
       <div className='bg-sky-50 text-gray-800 px-6 py-16 min-h-screen flex items-center justify-center'>
-        <div className='w-full max-w-[1140px] bg-white rounded-lg shadow-lg p-10 grid md:grid-cols-2 gap-12'>
+        <div className='w-full max-w-[1140px] bg-white rounded-lg shadow-lg p-10 grid md:grid-cols-2 gap-12' data-aos="fade-in">
           <div className='space-y-6'>
             <h2 className='text-3xl font-bold text-sky-600'>Kontak <span className='text-gray-800'>Kami</span></h2>
             <p className='text-gray-600'>Untuk informasi lebih lanjut mengenai pendaftaran, program pendidikan, atau kerja sama, silakan hubungi kami melalui kontak berikut.</p>

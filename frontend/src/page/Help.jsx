@@ -28,8 +28,8 @@ const Help = () => {
               </div>
             </div>
           </section>
-          <section className=''>
-            <h2 className='text-xl sm:text-2xl font-semibold mb-4 text-gray-800'>📞Hubungi Kami</h2>
+          <section className='mb-12'>
+            <h2 className='text-xl sm:text-2xl font-semibold mb-4 text-gray-800'><PiPhoneCallFill className='inline-block mr-2 text-sky-700 text-3xl'/>Hubungi Kami</h2>
             <p className='text-gray-600 text-sm sm:text-base mb-4'>Jika Anda mengalami masalah, silakan hubungi kami.</p>
             <ul className='text-gray-700 text-sm sm:text-base mb-4'>
               <li>Email: <strong>sman1cibitung@gmail.com</strong></li>

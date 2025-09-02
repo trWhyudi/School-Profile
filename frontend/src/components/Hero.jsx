@@ -14,8 +14,8 @@ const Hero = () => {
             showArrows={false}
             className='z-0'
         >
-            <div>
-                <img src="images/hero/Hero1.jpg" alt="Selamat Datang di Sekolah Kami" className='h-[80vh] w-full object-cover' />
+            <div data-aos="fade-in">
+                <img src="images/hero/Hero1.jpg" alt="Selamat Datang di Sekolah Kami" className='h-[80vh] w-full object-cover'/>
                 <div className='absolute inset-0 bg-black/10 bg-opacity-50 flex items-center justify-center'>
                     <h1 className='text-white text-4xl md:text-5xl font-bold drop-shadow-lg opacity-70'>Selamat Datang di Sekolah Kami</h1>
                 </div>

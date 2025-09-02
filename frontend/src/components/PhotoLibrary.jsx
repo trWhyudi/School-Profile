@@ -33,46 +33,54 @@ const photoBars = [
 
 const PhotoLibrary = () => {
   return (
-    <div className='bg-gradient-to-br from-sky-50 to-indigo-200 py-20 px-4' data-aos="fade-up">
-        <div className='max-w-[1440px] mx-auto'>
-            <div className='text-center mb-16'>
-                <h1 className='text-3xl md:text-4xl font-bold text-sky-600 mb-3'>Fasilitas Unggulan Sekolah Kami</h1>
-                <p className='text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center'>
-                    Beragam Sarana Modern dan Nyaman yang Dirancang untuk Mendukung Proses Belajar Mengajar secara Optimal dan Menyenangkan bagi Siswa
-                </p>
-            </div>
-            
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8' data-aos="zoom-in">
-                {photoBars.map((item) => (
-                    <div 
-                        key={item.id}
-                        className='group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2'
-                    >
-                        <div className='relative h-56 overflow-hidden'>
-                            <img 
-                                src={item.img} 
-                                alt={item.name}
-                                className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
-                            />
-                            <div className='absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
-                                <div className='translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
-                                    <p className='text-white text-sm'>{item.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className='bg-white p-6'>
-                            <h3 className='text-xl font-bold text-gray-800 mb-2'>{item.name}</h3>
-                            <p className='text-gray-600 text-sm line-clamp-2 sm:hidden'>
-                                {item.description}
-                            </p>
-                        </div>
-                    </div>
-                ))}
-            </div>
+    <div className="bg-gradient-to-br from-sky-50 to-indigo-200 py-20 px-4">
+      <div className="max-w-[1440px] mx-auto" data-aos="fade-up">
+        <div className="text-center mb-16">
+          <h1 className="text-3xl md:text-4xl font-bold text-sky-600 mb-3">
+            Fasilitas Unggulan Sekolah Kami
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 text-center">
+            Beragam Sarana Modern dan Nyaman yang Dirancang untuk Mendukung
+            Proses Belajar Mengajar secara Optimal dan Menyenangkan bagi Siswa
+          </p>
         </div>
+
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          data-aos="fade-up"
+        >
+          {photoBars.map((item) => (
+            <div
+              key={item.id}
+              className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2"
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  {item.name}
+                </h3>
+                <p className="text-gray-600 text-sm line-clamp-2 sm:hidden">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default PhotoLibrary
