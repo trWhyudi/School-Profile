@@ -1,16 +1,20 @@
-import axios from 'axios';
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { FaUserCircle, FaBars, FaTimes, FaChevronDown, FaSchool } from 'react-icons/fa';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { Context } from '../main';
+import axios from "axios";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import {
+  FaUserCircle,
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+} from "react-icons/fa";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Context } from "../main";
 import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { RiProfileLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { isAuth, setIsAuth, user, setUser } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,56 +22,63 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const menuButtonRef = useRef(null);
 
-  // Tutup menu saat berpindah halaman
+  // Cek apakah sedang di halaman dashboard
+  const isDashboard = location.pathname.startsWith("/dashboard");
+
   useEffect(() => {
     setMenuOpen(false);
     setProfileOpen(false);
   }, [location]);
 
-  // Scroll detection dengan efek glassmorphism
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Disable scroll saat menu terbuka dan handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Close profile dropdown if clicked outside
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setProfileOpen(false);
       }
-      
-      // Close mobile menu if clicked outside (excluding menu button)
-      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target)) {
-        if (menuButtonRef.current && !menuButtonRef.current.contains(event.target)) {
+
+      if (
+        menuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        if (
+          menuButtonRef.current &&
+          !menuButtonRef.current.contains(event.target)
+        ) {
           setMenuOpen(false);
         }
       }
     };
 
     if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = "hidden";
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen]);
 
-  const navLinks = [
+  // Menu untuk halaman biasa
+  const regularNavLinks = [
     { name: "Beranda", href: "/" },
     { name: "Tentang", href: "/about" },
     { name: "Layanan", href: "/services" },
     { name: "Kontak", href: "/contact" },
   ];
+
+  // Menu untuk halaman dashboard
+  const dashboardNavLinks = [
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "Profil", href: "/profile" },
+    { name: "Beranda", href: "/" },
+  ];
+
+  const navLinks = isDashboard ? dashboardNavLinks : regularNavLinks;
 
   const logOutHandler = async () => {
     try {
@@ -89,7 +100,7 @@ const Navbar = () => {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-        }
+        },
       });
 
       setIsAuth(false);
@@ -107,62 +118,51 @@ const Navbar = () => {
         localStorage.clear();
         navigate("/login");
       } else {
-        toast.error(error?.response?.data?.message || "Logout Gagal, silahkan coba lagi.");
+        toast.error(
+          error?.response?.data?.message || "Logout Gagal, silahkan coba lagi."
+        );
         navigate("/login");
       }
     }
   };
 
-  // Fungsi khusus untuk menutup menu
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
   return (
     <>
-      {/* Header utama - disembunyikan saat menu mobile terbuka dan navbar transparan */}
-      <header 
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          scrolled ? 'py-2 bg-white/95 backdrop-blur-md shadow-md' : 'py-4 bg-transparent'
-        } ${
-          menuOpen && !scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
-      >
-        <div className='max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full'>
-
+      <header className="fixed top-0 w-full z-50 bg-white shadow-md py-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
           {/* Logo Section */}
-          <div className='flex items-center'>
-            {/* Tombol Menu (Mobile) */}
+          <div className="flex items-center">
             <button
               ref={menuButtonRef}
-              className='md:hidden mr-4 text-2xl text-sky-700 hover:text-sky-800 transition-colors z-50'
+              className="md:hidden mr-4 text-2xl text-sky-600 hover:text-sky-800 transition-colors z-50"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
               {menuOpen ? <FaTimes /> : <FaBars />}
             </button>
 
-            {/* Logo */}
-            <Link to="/" className='flex items-center gap-2 group'>
-              <div className='bg-sky-600 group-hover:bg-sky-700 p-2 rounded-lg transition-colors duration-300'>
-                <FaSchool className='text-white text-xl' />
-              </div>
-              <span className='text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent'>
+            <Link to="/" className="flex items-center gap-2 group">
+              <img src="images/logo.png" alt="" className="w-10 h-10" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">
                 SMAN 1 Cibitung
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className='hidden md:flex items-center space-x-1'>
+          <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 to={link.href}
                 className={`relative px-4 py-2 font-medium rounded-lg transition-all duration-300 group ${
-                  location.pathname === link.href 
-                    ? 'text-sky-600 bg-sky-50' 
-                    : 'text-gray-700 hover:text-sky-600'
+                  location.pathname === link.href
+                    ? "text-sky-600 bg-sky-50"
+                    : "text-gray-700 hover:text-sky-600"
                 }`}
               >
                 {link.name}
@@ -174,13 +174,13 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Right Section - Auth Buttons & Profile */}
-          <div className='flex items-center space-x-3'>
+          {/* Right Section */}
+          <div className="flex items-center space-x-3">
             {isAuth ? (
-              <div className='relative' ref={profileRef}>
+              <div className="relative" ref={profileRef}>
                 <button
                   onClick={() => setProfileOpen(!profileOpen)}
-                  className='flex items-center gap-2 p-1 rounded-full transition-all duration-300 hover:bg-sky-50'
+                  className="flex items-center gap-2 p-1 rounded-full transition-all duration-300 hover:bg-sky-50"
                   aria-label="Profile menu"
                 >
                   {user?.avatar?.url ? (
@@ -190,65 +190,74 @@ const Navbar = () => {
                       className="w-10 h-10 rounded-full object-cover border-2 border-sky-200 hover:border-sky-300 transition-colors"
                     />
                   ) : (
-                    <div className='w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center border border-sky-200'>
-                      <FaUserCircle className='text-2xl text-sky-600' />
+                    <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center border border-sky-200">
+                      <FaUserCircle className="text-2xl text-sky-600" />
                     </div>
                   )}
-                  <FaChevronDown className={`text-sky-600 transition-transform ${profileOpen ? 'rotate-180' : ''}`} />
+                  <FaChevronDown
+                    className={`text-sky-600 transition-transform ${
+                      profileOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
 
-                {/* Profile Dropdown */}
                 {profileOpen && (
-                  <div className='absolute right-0 mt-2 bg-white rounded-xl shadow-lg py-2 w-56 z-50 border border-gray-100 overflow-hidden animate-fadeIn'>
-                    <div className='px-4 py-3 border-b border-gray-100 bg-gradient-to-r from-sky-50 to-blue-50'>
-                      <p className='font-semibold text-gray-800 truncate'>{user?.name}</p>
-                      <p className='text-sm text-sky-600 capitalize'>{user?.role}</p>
+                  <div className="absolute right-0 mt-2 bg-white rounded-xl shadow-lg py-2 w-56 z-50 border border-gray-100 overflow-hidden animate-fadeIn">
+                    <div className="px-4 py-3 border-b border-gray-100 bg-gradient-to-r from-sky-50 to-blue-50">
+                      <p className="font-semibold text-gray-800 truncate">
+                        {user?.name}
+                      </p>
+                      <p className="text-sm text-sky-600 capitalize">
+                        {user?.role}
+                      </p>
                     </div>
-                    
-                    <Link
-                      to="/dashboard"
-                      className='flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors group'
-                      onClick={() => setProfileOpen(false)}
-                    >
-                      <MdOutlineDashboard className='text-sky-600 group-hover:scale-110 transition-transform' />
-                      <span>Dashboard</span>
-                    </Link>
-                    
+
+                    {!isDashboard && (
+                      <Link
+                        to="/dashboard"
+                        className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors group"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        <MdOutlineDashboard className="text-sky-600 group-hover:scale-110 transition-transform" />
+                        <span>Dashboard</span>
+                      </Link>
+                    )}
+
                     <Link
                       to="/profile"
-                      className='flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors group'
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors group"
                       onClick={() => setProfileOpen(false)}
                     >
-                      <RiProfileLine className='text-sky-600 group-hover:scale-110 transition-transform' />
+                      <RiProfileLine className="text-sky-600 group-hover:scale-110 transition-transform" />
                       <span>Profil Saya</span>
                     </Link>
-                    
-                    <div className='border-t border-gray-100 my-1'></div>
-                    
+
+                    <div className="border-t border-gray-100 my-1"></div>
+
                     <button
-                      className='flex items-center gap-3 w-full px-4 py-3 text-red-600 hover:bg-red-50 transition-colors group'
+                      className="flex items-center gap-3 w-full px-4 py-3 text-red-600 hover:bg-red-50 transition-colors group"
                       onClick={() => {
                         setProfileOpen(false);
                         logOutHandler();
                       }}
                     >
-                      <MdLogout className='group-hover:scale-110 transition-transform' />
+                      <MdLogout className="group-hover:scale-110 transition-transform" />
                       <span>Logout</span>
                     </button>
                   </div>
                 )}
               </div>
             ) : (
-              <div className='hidden md:flex items-center space-x-2'>
+              <div className="hidden md:flex items-center space-x-2">
                 <Link
                   to="/register"
-                  className='px-4 py-2 rounded-lg border border-sky-600 text-sky-600 font-medium hover:bg-sky-600 hover:text-white transition-all duration-300'
+                  className="px-4 py-2 rounded-lg border border-sky-600 text-sky-600 font-medium hover:bg-sky-600 hover:text-white transition-all duration-300"
                 >
                   Daftar
                 </Link>
                 <Link
                   to="/login"
-                  className='px-4 py-2 rounded-lg bg-gradient-to-r from-sky-600 to-blue-600 text-white font-medium hover:from-sky-700 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg'
+                  className="px-4 py-2 rounded-lg bg-gradient-to-r from-sky-600 to-blue-600 text-white font-medium hover:from-sky-700 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   Masuk
                 </Link>
@@ -259,26 +268,36 @@ const Navbar = () => {
       </header>
 
       {/* Mobile Menu */}
-      <div 
+      <div
         ref={menuRef}
-        className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ease-in-out ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+        className={`md:hidden fixed inset-0 z-40 transition-all duration-500 ease-in-out ${
+          menuOpen
+            ? "opacity-100 visible"
+            : "opacity-0 invisible pointer-events-none"
+        }`}
       >
-        {/* Backdrop with blur effect */}
-        <div 
-          className="absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300"
+        <div
+          className="absolute inset-0 bg-black/30 transition-opacity duration-300"
           onClick={closeMenu}
         />
-        
-        {/* Slide-in menu */}
-        <div className={`absolute top-0 left-0 h-full w-80 max-w-[85%] bg-white shadow-xl transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+
+        <div
+          className={`absolute top-0 left-0 h-full w-80 max-w-[85%] bg-white shadow-xl transform transition-transform duration-500 ease-in-out ${
+            menuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
           <div className="flex items-center justify-between p-5 border-b border-gray-200 bg-gradient-to-r from-sky-50 to-blue-50">
-            <Link to="/" className='flex items-center gap-2' onClick={closeMenu}>
-              <div className='bg-sky-600 p-2 rounded-lg'>
-                <FaSchool className='text-white text-xl' />
-              </div>
-              <span className='text-xl font-bold text-sky-700'>SMAN 1 Cibitung</span>
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              onClick={closeMenu}
+            >
+              <img src="images/logo.png" alt="" className="w-10 h-10" />
+              <span className="text-xl font-bold text-sky-700">
+                SMAN 1 Cibitung
+              </span>
             </Link>
-            <button 
+            <button
               onClick={closeMenu}
               className="p-2 rounded-full hover:bg-sky-100 transition-colors z-50 relative"
               aria-label="Close menu"
@@ -286,7 +305,7 @@ const Navbar = () => {
               <FaTimes className="text-sky-700" />
             </button>
           </div>
-          
+
           <div className="h-full overflow-y-auto py-6 px-4">
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link, index) => (
@@ -295,8 +314,8 @@ const Navbar = () => {
                   to={link.href}
                   className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 flex items-center ${
                     location.pathname === link.href
-                      ? 'bg-sky-100 text-sky-600 shadow-inner'
-                      : 'text-gray-700 hover:bg-sky-50 hover:text-sky-600'
+                      ? "bg-sky-100 text-sky-600 shadow-inner"
+                      : "text-gray-700 hover:bg-sky-50 hover:text-sky-600"
                   }`}
                   onClick={closeMenu}
                 >
@@ -307,24 +326,28 @@ const Navbar = () => {
                 </Link>
               ))}
             </nav>
-            
+
             <div className="mt-8 pt-6 border-t border-gray-200">
               {isAuth ? (
                 <div className="space-y-2">
                   <div className="px-4 py-3 bg-sky-50 rounded-xl mb-4">
                     <p className="font-medium text-sky-700">{user?.name}</p>
-                    <p className="text-sm text-sky-600 capitalize">{user?.role}</p>
+                    <p className="text-sm text-sky-600 capitalize">
+                      {user?.role}
+                    </p>
                   </div>
-                  
-                  <Link
-                    to="/dashboard"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-sky-50 transition-colors"
-                    onClick={closeMenu}
-                  >
-                    <MdOutlineDashboard className="text-sky-600" />
-                    <span>Dashboard</span>
-                  </Link>
-                  
+
+                  {!isDashboard && (
+                    <Link
+                      to="/dashboard"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-sky-50 transition-colors"
+                      onClick={closeMenu}
+                    >
+                      <MdOutlineDashboard className="text-sky-600" />
+                      <span>Dashboard</span>
+                    </Link>
+                  )}
+
                   <Link
                     to="/profile"
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-sky-50 transition-colors"
@@ -333,7 +356,7 @@ const Navbar = () => {
                     <RiProfileLine className="text-sky-600" />
                     <span>Profil Saya</span>
                   </Link>
-                  
+
                   <button
                     className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-colors"
                     onClick={() => {
