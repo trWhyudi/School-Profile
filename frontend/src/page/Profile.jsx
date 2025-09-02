@@ -5,7 +5,7 @@ const Profile = () => {
     const {user} = useContext(Context);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-sky-50 to-indigo-100 py-12 md:py-50 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-sky-50 to-indigo-100 py-30 md:py-50 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div className="md:flex">
