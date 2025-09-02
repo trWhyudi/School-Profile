@@ -27,8 +27,14 @@ const userSchema = new mongoose.Schema({
         enum: ["Admin", "Murid", "Guru"],
     },
     avatar: {
-        public_id: String,
-        url: String,
+        public_id: {
+            type: String,
+            default: null,
+        },
+        url: {
+            type: String,
+            default: "https://res.cloudinary.com/dawufivy7/image/upload/v1756822802/user_4_erjcnl.png",
+        },
     },
     phone: {
         type: String,

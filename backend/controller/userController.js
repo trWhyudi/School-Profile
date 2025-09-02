@@ -7,39 +7,68 @@ import { sendEmail } from "../utils/sendEmail.js";
 import crypto from "crypto";
 
 // register user
-export const createUserController = errorHandleMiddleware(async(req, res, next) => {
-    try {
-        if (!req.files || Object.keys(req.files).length === 0) {
-            return next(new ErrorHandler("Gambar diperlukan", 404));
-        }
-        const {avatar} = req.files;
-        const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
-        if (!allowedFormats.includes(avatar.mimetype)) {
-            return next(new ErrorHandler("Format file tidak sesuai!", 400));
+export const createUserController = errorHandleMiddleware(
+    async (req, res, next) => {
+        try {
+            const {
+                name,
+                email,
+                password,
+                role,
+                phone,
+                address,
+                dateOfBirth,
+                gender,
+            } = req.body;
+
+        // Validasi field wajib
+        if (
+            !name ||
+            !email ||
+            !password ||
+            !role ||
+            !phone ||
+            !address ||
+            !dateOfBirth ||
+            !gender
+        ) {
+            return next(new ErrorHandler("Isi semua form yang tersedia", 400));
         }
 
-        const {name, email, password, role, phone, address, dateOfBirth, gender} = req.body;
-
-        // validator
-        if (!name || !email || !password || !role || !phone || !address || !dateOfBirth || !gender){
-            return next(new ErrorHandler("Isi form yang tersedia", 400));
-        }
-
-        // check user di database
-        const exitingUser = await User.findOne({email})
-        if (exitingUser) {
+        // Cek jika email sudah digunakan
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
             return next(new ErrorHandler("Email sudah terdaftar", 400));
         }
 
-        const cloudinaryResponse = await cloudinary.uploader.upload(
-            avatar.tempFilePath
-        )
+        // Inisialisasi avatar (jika ada)
+        let cloudinaryResponse = null;
 
-        if (!cloudinaryResponse || cloudinaryResponse.error) {
-            console.log("Cloudinary error", cloudinaryResponse.error || "Error cloudinary tidak diketahui");
-            return next(new ErrorHandler("Gagal untuk mengupload gambar ke cloudinary", 404));
+        if (req.files && req.files.avatar) {
+            const { avatar } = req.files;
+            const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+
+            if (!allowedFormats.includes(avatar.mimetype)) {
+                return next(new ErrorHandler("Format file tidak sesuai!", 400));
+            }
+
+            // Upload avatar ke Cloudinary
+            cloudinaryResponse = await cloudinary.uploader.upload(
+            avatar.tempFilePath
+            );
+
+            if (!cloudinaryResponse || cloudinaryResponse.error) {
+            console.log(
+                "Cloudinary error:",
+                cloudinaryResponse.error || "Error cloudinary tidak diketahui"
+            );
+            return next(
+                new ErrorHandler("Gagal mengupload gambar ke cloudinary", 500)
+            );
+            }
         }
-        
+
+        // Buat user baru
         const user = await User.create({
             name,
             email,
@@ -49,22 +78,26 @@ export const createUserController = errorHandleMiddleware(async(req, res, next) 
             address,
             role,
             dateOfBirth,
-            avatar:{
+            avatar: cloudinaryResponse
+            ? {
                 public_id: cloudinaryResponse.public_id,
                 url: cloudinaryResponse.secure_url,
-            },
+                }
+            : undefined, // tidak ada avatar jika tidak diupload
         });
-        jsontoken(user,"Berhasil membuat user", 201, res);
 
-    } catch (error) {
+        // Kirim token sebagai respons
+        jsontoken(user, "Berhasil membuat user", 201, res);
+        } catch (error) {
         console.log(error);
         res.status(500).json({
             success: false,
             message: "Gagal membuat user",
             error,
-        })
+        });
+        }
     }
-});
+);
 
 // login user
 export const loginUserController = errorHandleMiddleware(async (req, res, next) => {
