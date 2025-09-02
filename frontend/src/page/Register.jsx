@@ -13,7 +13,7 @@ const Register = () => {
     const [gender, setGender] = useState("")
     const [avatar, setAvatar] = useState(null)
     const [dateOfBirth, setDateOfBirth] = useState("")
-    const [role, setRole] = useState("")
+    const [role] = useState("Murid")
     const [showPassword, setShowPassword] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -23,7 +23,7 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
 
-        if (!name || !email || !password || !phone || !address || !gender || !avatar || !dateOfBirth || !role) {
+        if (!name || !email || !password || !phone || !address || !gender || !dateOfBirth) {
             toast.error("Mohon isi semua data dengan benar.");
             setLoading(false);
             return;
@@ -63,7 +63,6 @@ const Register = () => {
             setGender("");
             setAvatar(null);
             setDateOfBirth("");
-            setRole("");
         } catch (error) {
             console.error("Registrasi gagal",error);
             if (error.response?.data?.message) {
@@ -143,19 +142,6 @@ const Register = () => {
                         </button>
                     </div>
                     
-                    {/* Role Selection */}
-                    <div className='flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500'>
-                        <FaUserTag className='text-gray-500 mr-3 flex-shrink-0'/>
-                        <select 
-                            className='w-full outline-none text-gray-700 bg-white appearance-none' value={role} onChange={(e) => setRole(e.target.value)}
-                            required
-                        >
-                            <option value="">Pilih Role</option>
-                            <option value="Murid">Murid</option>
-                            <option value="Guru">Guru</option>
-                        </select>
-                    </div>
-                    
                     {/* Gender Selection */}
                     <div className='flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500'>
                         <FaUserTag className='text-gray-500 mr-3 flex-shrink-0'/>
@@ -218,7 +204,6 @@ const Register = () => {
                                 accept='image/*'
                                 className='w-full outline-none text-gray-700'
                                 onChange={handleAvatarChange}
-                                required
                             />
                         </label>
                     </div>

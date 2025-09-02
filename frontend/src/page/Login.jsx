@@ -97,9 +97,9 @@ const Login = () => {
                       required
                   >
                       <option value="">Pilih Role</option>
-                      <option value="Murid">Murid</option>
-                      <option value="Guru">Guru</option>
                       <option value="Admin">Admin</option>
+                      <option value="Guru">Guru</option>
+                      <option value="Murid">Murid</option>
                   </select>
               </div>
 
